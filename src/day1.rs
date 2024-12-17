@@ -1,21 +1,13 @@
 use regex::Regex;
 use std::collections::HashMap;
-use std::fs::File;
-use std::io::{self, BufRead};
 
-// The output is wrapped in a Result to allow matching on errors.
-// Returns an Iterator to the Reader of the lines of the file.
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<std::path::Path>, {
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
-}
+use crate::file_reader;
 
 fn parse1(input: &std::path::Path) -> (Vec<i32>, Vec<i32>) {
     let mut l1: Vec<i32> = Vec::new();
     let mut l2: Vec<i32> = Vec::new();
 
-    if let Ok(lines) = read_lines(input) {
+    if let Ok(lines) = file_reader::read_lines(input) {
         let re = Regex::new(r"(\d+)\s+(\d+)").unwrap();
 
         lines.for_each(|l| {

@@ -1,18 +1,9 @@
-use std::fs::File;
-use std::io::{self, BufRead};
-
-// The output is wrapped in a Result to allow matching on errors.
-// Returns an Iterator to the Reader of the lines of the file.
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<std::path::Path>, {
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
-}
+use crate::file_reader;
 
 fn parse(input: &std::path::Path) -> Vec<Vec<i32>> {
     let mut reports: Vec<Vec<i32>> = Vec::new();
 
-    if let Ok(lines) = read_lines(input) {
+    if let Ok(lines) = file_reader::read_lines(input) {
         lines.for_each(|l| {
             let s = l.unwrap();
 
