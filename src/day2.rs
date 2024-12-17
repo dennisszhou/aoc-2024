@@ -7,7 +7,11 @@ fn parse(input: &std::path::Path) -> Vec<Vec<i32>> {
         lines.for_each(|l| {
             let s = l.unwrap();
 
-            reports.push(s.split(" ").map(|i| -> i32{i.parse().unwrap()}).collect())
+            reports.push(
+                s.split(" ")
+                    .map(|i| -> i32 { i.parse().unwrap() })
+                    .collect(),
+            )
         });
     }
 
@@ -15,15 +19,14 @@ fn parse(input: &std::path::Path) -> Vec<Vec<i32>> {
 }
 
 fn part1(r: &Vec<i32>) -> bool {
-    let deltas: Vec<i32> = r.windows(2).map(|w| { w[0] - w[1] }).collect();
+    let deltas: Vec<i32> = r.windows(2).map(|w| w[0] - w[1]).collect();
 
-    return deltas.iter().all(|&i| { i > 0 && i <= 3 }) ||
-        deltas.iter().all(|&i| { i < 0 && i >= -3 });
+    return deltas.iter().all(|&i| i > 0 && i <= 3) || deltas.iter().all(|&i| i < 0 && i >= -3);
 }
 
 fn part2(r: &Vec<i32>) -> bool {
     for i in 0..r.len() {
-        let slice: Vec<i32> = [&r[0..i], &r[i+1..r.len()]].concat();
+        let slice: Vec<i32> = [&r[0..i], &r[i + 1..r.len()]].concat();
         if part1(&slice) {
             return true;
         }
@@ -47,11 +50,10 @@ fn evaluator(part: i32, input: &std::path::Path) {
     println!("valid: {}", valid);
 }
 
-
 pub fn main(part: i32, input: std::path::PathBuf) {
     match part {
         1 => evaluator(part, input.as_path()),
         2 => evaluator(part, input.as_path()),
-        _ => println!("no")
+        _ => println!("no"),
     }
 }

@@ -1,7 +1,4 @@
-use {
-    once_cell::sync::Lazy,
-    regex::Regex,
-};
+use {once_cell::sync::Lazy, regex::Regex};
 
 use crate::file_reader;
 
@@ -25,6 +22,6 @@ fn part1(input: &std::path::Path) {
 pub fn main(part: i32, input: std::path::PathBuf) {
     match part {
         1 => part1(input.as_path()),
-        _ => println!("no")
+        _ => println!("no"),
     }
 }

@@ -31,7 +31,7 @@ fn part1(input: &std::path::Path) {
     for (a, b) in l1.into_iter().zip(l2.into_iter()) {
         sum += (a - b).abs();
     }
-    
+
     println!("delta: {}", sum);
 }
 
@@ -59,7 +59,7 @@ fn part2(input: &std::path::Path) {
             sum += i * c;
         }
     }
-    
+
     println!("delta: {}", sum);
 }
 
@@ -67,6 +67,6 @@ pub fn main(part: i32, input: std::path::PathBuf) {
     match part {
         1 => part1(input.as_path()),
         2 => part2(input.as_path()),
-        _ => println!("no")
+        _ => println!("no"),
     }
 }
