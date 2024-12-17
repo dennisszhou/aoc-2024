@@ -1,5 +1,6 @@
 mod day1;
 mod day2;
+mod day3;
 mod file_reader;
 
 use clap::{Parser, Subcommand};
@@ -24,7 +25,12 @@ enum Commands {
         #[arg(short, long)]
         input: std::path::PathBuf,
 	},
-
+    Day3 {
+        #[arg(short, long)]
+        part: i32,
+        #[arg(short, long)]
+        input: std::path::PathBuf,
+	},
 }
 
 fn main() {
@@ -33,5 +39,6 @@ fn main() {
     match cli.cmd {
         Commands::Day1{part, input} => day1::main(part, input),
         Commands::Day2{part, input} => day2::main(part, input),
+        Commands::Day3{part, input} => day3::main(part, input),
     }
 }
